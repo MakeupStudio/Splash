@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 
 /**
  *  Splash
@@ -13,27 +13,45 @@ let package = Package(
     products: [
         .library(name: "Splash", targets: ["Splash"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/MakeupStudio/Palette.git", .branch("master"))
+    ],
     targets: [
-        .target(name: "Splash"),
+        .target(
+            name: "Splash",
+            dependencies: [
+                .product(name: "Palette", package: "Palette")
+            ]
+        ),
         .target(
             name: "SplashMarkdown",
-            dependencies: ["Splash"]
+            dependencies: [
+                .target(name: "Splash")
+            ]
         ),
         .target(
             name: "SplashHTMLGen",
-            dependencies: ["Splash"]
+            dependencies: [
+                .target(name: "Splash")
+            ]
         ),
         .target(
             name: "SplashImageGen",
-            dependencies: ["Splash"]
+            dependencies: [
+                .target(name: "Splash")
+            ]
         ),
         .target(
             name: "SplashTokenizer",
-            dependencies: ["Splash"]
+            dependencies: [
+                .target(name: "Splash")
+            ]
         ),
         .testTarget(
             name: "SplashTests",
-            dependencies: ["Splash"]
+            dependencies: [
+                .target(name: "Splash")
+            ]
         )
     ]
 )

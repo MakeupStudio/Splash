@@ -6,13 +6,20 @@
 
 import Foundation
 
-#if !os(Linux)
-
-public extension Theme {
+extension Theme {
+    
+    #if os(macOS) || os(iOS)
     /// Create a theme matching the "Sundell's Colors" Xcode theme
-    static func sundellsColors(withFont font: Font) -> Theme {
-        return Theme(
-            font: font,
+    public static func sundellsColors(withFont font: Font) -> Theme {
+        var theme = sundellsColors()
+        theme.font = font
+        return theme
+    }
+    #endif
+    
+    /// Create a theme matching the "Sundell's Colors" Xcode theme
+    public static func sundellsColors() -> Theme {
+        Theme(
             plainTextColor: Color(
                 red: 0.66,
                 green: 0.74,
@@ -26,8 +33,8 @@ public extension Theme {
                 .number: Color(red: 0.86, green: 0.44, blue: 0.34),
                 .comment: Color(red: 0.42, green: 0.54, blue: 0.58),
                 .property: Color(red: 0.13, green: 0.67, blue: 0.62),
-                .dotAccess: Color(red: 0.57, green: 0.7, blue: 0),
-                .preprocessing: Color(red: 0.71, green: 0.54, blue: 0)
+                .dotAccess: Color(red: 0.57, green: 0.7, blue: 0.0),
+                .preprocessing: Color(red: 0.71, green: 0.54, blue: 0.0)
             ],
             backgroundColor: Color(
                 red: 0.098,
@@ -36,15 +43,23 @@ public extension Theme {
             )
         )
     }
-
+    
+    #if os(macOS) || os(iOS)
     /// Create a theme matching Xcode's "Midnight" theme
-    static func midnight(withFont font: Font) -> Theme {
-        return Theme(
-            font: font,
+    public static func midnight(withFont font: Font) -> Theme {
+        var theme = midnight()
+        theme.font = font
+        return theme
+    }
+    #endif
+    
+    /// Create a theme matching Xcode's "Midnight" theme
+    public static func midnight() -> Theme {
+        Theme(
             plainTextColor: Color(
-                red: 1,
-                green: 1,
-                blue: 1
+                red: 1.0,
+                green: 1.0,
+                blue: 1.0
             ),
             tokenColors: [
                 .keyword: Color(red: 0.828, green: 0.095, blue: 0.583),
@@ -58,17 +73,25 @@ public extension Theme {
                 .preprocessing: Color(red: 0.896, green: 0.488, blue: 0.284)
             ],
             backgroundColor: Color(
-                red: 0,
-                green: 0,
-                blue: 0
+                red: 1.0,
+                green: 1.0,
+                blue: 1.0
             )
         )
     }
-
+    
+    #if os(macOS) || os(iOS)
     /// Creating a theme matching the colors used for the WWDC 2017 sample code
-    static func wwdc17(withFont font: Font) -> Theme {
-        return Theme(
-            font: font,
+    public static func wwdc17(withFont font: Font) -> Theme {
+        var theme = wwdc17()
+        theme.font = font
+        return theme
+    }
+    #endif
+    
+    /// Creating a theme matching the colors used for the WWDC 2017 sample code
+    public static func wwdc17() -> Theme {
+        Theme(
             plainTextColor: Color(
                 red: 0.84,
                 green: 0.84,
@@ -92,15 +115,23 @@ public extension Theme {
             )
         )
     }
-
+    
+    #if os(macOS) || os(iOS)
     /// Creating a theme matching the colors used for the WWDC 2018 sample code
-    static func wwdc18(withFont font: Font) -> Theme {
-        return Theme(
-            font: font,
+    public static func wwdc18(withFont font: Font) -> Theme {
+        var theme = wwdc18()
+        theme.font = font
+        return theme
+    }
+    #endif
+    
+    /// Creating a theme matching the colors used for the WWDC 2018 sample code
+    public static func wwdc18() -> Theme {
+        Theme(
             plainTextColor: Color(
-                red: 1,
-                green: 1,
-                blue: 1
+                red: 1.0,
+                green: 1.0,
+                blue: 1.0
             ),
             tokenColors: [
                 .keyword: Color(red: 0.948, green: 0.140, blue: 0.547),
@@ -120,15 +151,23 @@ public extension Theme {
             )
         )
     }
-
+    
+    #if os(macOS) || os(iOS)
     /// Create a theme matching Xcode's "Sunset" theme
-    static func sunset(withFont font: Font) -> Theme {
-        return Theme(
-            font: font,
+    public static func sunset(withFont font: Font) -> Theme {
+        var theme = sunset()
+        theme.font = font
+        return theme
+    }
+    #endif
+    
+    /// Create a theme matching Xcode's "Sunset" theme
+    public static func sunset() -> Theme {
+        Theme(
             plainTextColor: Color(
-                red: 0,
-                green: 0,
-                blue: 0
+                red: 0.0,
+                green: 0.0,
+                blue: 0.0
             ),
             tokenColors: [
                 .keyword: Color(red: 0.161, green: 0.259, blue: 0.467),
@@ -142,21 +181,29 @@ public extension Theme {
                 .preprocessing: Color(red: 0.392, green: 0.391, blue: 0.52)
             ],
             backgroundColor: Color(
-                red: 1,
+                red: 1.0,
                 green: 0.99,
                 blue: 0.9
             )
         )
     }
-
+    
+    #if os(macOS) || os(iOS)
     /// Create a theme matching Xcode's "Presentation" theme
-    static func presentation(withFont font: Font) -> Theme {
-        return Theme(
-            font: font,
+    public static func presentation(withFont font: Font) -> Theme {
+        var theme = presentation()
+        theme.font = font
+        return theme
+    }
+    #endif
+    
+    /// Create a theme matching Xcode's "Presentation" theme
+    public static func presentation() -> Theme {
+        Theme(
             plainTextColor: Color(
-                red: 0,
-                green: 0,
-                blue: 0
+                red: 0.0,
+                green: 0.0,
+                blue: 0.0
             ),
             tokenColors: [
                 .keyword: Color(red: 0.706, green: 0.0, blue: 0.384),
@@ -170,12 +217,10 @@ public extension Theme {
                 .preprocessing: Color(red: 0.431, green: 0.125, blue: 0.051)
             ],
             backgroundColor: Color(
-                red: 1,
-                green: 1,
-                blue: 1
+                red: 1.0,
+                green: 1.0,
+                blue: 1.0
             )
         )
     }
 }
-
-#endif

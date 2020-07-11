@@ -4,7 +4,16 @@
  *  MIT license - see LICENSE.md
  */
 
-#if !os(Linux)
+
+#if os(iOS)
+import UIKit
+private func _makeTextForegroundColor(_ color: Color) -> UIColor { .init(color) }
+#elseif os(macOS)
+import AppKit
+private func _makeTextForegroundColor(_ color: Color) -> NSColor { .init(color) }
+#endif
+
+#if os(macOS) || os(iOS)
 
 import Foundation
 
@@ -34,7 +43,7 @@ public extension AttributedStringOutputFormat {
         }
 
         public mutating func addToken(_ token: String, ofType type: TokenType) {
-            let color = theme.tokenColors[type] ?? Color(red: 1, green: 1, blue: 1)
+            let color = theme.tokenColors[type] ?? Color(red: 1.0, green: 1.0, blue: 1.0)
             string.append(token, font: font, color: color)
         }
 
@@ -43,7 +52,7 @@ public extension AttributedStringOutputFormat {
         }
 
         public mutating func addWhitespace(_ whitespace: String) {
-            let color = Color(red: 1, green: 1, blue: 1)
+            let color = Color(red: 1.0, green: 1.0, blue: 1.0)
             string.append(whitespace, font: font, color: color)
         }
 
@@ -56,7 +65,7 @@ public extension AttributedStringOutputFormat {
 private extension NSMutableAttributedString {
     func append(_ string: String, font: Font.Loaded, color: Color) {
         let attributedString = NSAttributedString(string: string, attributes: [
-            .foregroundColor: color,
+            .foregroundColor: _makeTextForegroundColor(color),
             .font: font
         ])
 

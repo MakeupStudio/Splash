@@ -39,7 +39,7 @@ let contextRect = CGRect(
 let context = NSGraphicsContext(size: contextRect.size)
 NSGraphicsContext.current = context
 
-context.fill(with: theme.backgroundColor, in: contextRect)
+context.fill(with: .init(theme.backgroundColor), in: contextRect)
 
 string.draw(in: CGRect(
     x: options.padding,

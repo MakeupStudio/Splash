@@ -22,7 +22,7 @@ class SplashTestCase: XCTestCase {
         }
 
         XCTAssertTrue(concreteType.testNames.contains("testAllTestsRunOnLinux"),
-                      "\(concreteType) doesn't have a  test that verifies that its tests run on Linux")
+                      "\(concreteType) doesn't have a test that verifies that its tests run on Linux")
     }
     #endif
 }

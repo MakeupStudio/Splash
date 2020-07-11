@@ -6,7 +6,7 @@
 
 import Foundation
 
-#if !os(Linux)
+#if os(macOS) || os(iOS)
 
 /// A representation of a font, for use with a `Theme`.
 /// Since Splash aims to be cross-platform, it uses this
